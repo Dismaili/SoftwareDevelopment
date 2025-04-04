@@ -14,6 +14,8 @@ import runServer from './server.js';
 import { preventOutOfBounds } from './preventOutOfBounds.js';
 import checkSelfCollision from './checkSelfCollision.js';
 import checkSnakeCollision from './checkSnakeCollision.js';
+import { printBoard } from './printBoard.js';
+
 
 
 // info is called when you create your Battlesnake on play.battlesnake.com
