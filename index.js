@@ -14,6 +14,7 @@ import runServer from './server.js';
 import { preventOutOfBounds } from './preventOutOfBounds.js';
 import checkSelfCollision from './checkSelfCollision.js';
 import checkSnakeCollision from './checkSnakeCollision.js';
+import { getMoveTowardsFood } from './foodTargeting.js';
 import { printBoard } from './printBoard.js';
 
 
@@ -85,14 +86,17 @@ function move(gameState) {
     return { move: "down" };
   }
 
-  // Choose a random move from the safe moves
-  const nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
-
-  // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
   // food = gameState.board.food;
+  // moving for longer survival 
+  // choose next move towards food if available otherwise fall back to a random safe move 
+  let nextMove = getMoveTowardsFood(gameState, safeMoves);
+if (nextMove) {
+  console.log(`MOVE ${gameState.turn}: Moving towards food -> ${nextMove}`);
+} else {
+  nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
+  console.log(`MOVE ${gameState.turn}: No food path, random move -> ${nextMove}`);
+}
 
-  console.log(`MOVE ${gameState.turn}: ${nextMove}`)
-  return { move: nextMove };
 }
 
 runServer({
