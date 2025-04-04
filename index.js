@@ -12,6 +12,7 @@
 
 import runServer from './server.js';
 import { preventOutOfBounds } from './preventOutOfBounds.js';
+import checkSelfCollision from './checkSelfCollision.js';
 
 
 // info is called when you create your Battlesnake on play.battlesnake.com
@@ -70,8 +71,7 @@ function move(gameState) {
   
   isMoveSafe = preventOutOfBounds(myHead, gameState, isMoveSafe);
 
-  // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
-  // myBody = gameState.you.body;
+  isMoveSafe = checkSelfCollision(gameState, myHead, isMoveSafe);
 
   // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
   // opponents = gameState.board.snakes;
