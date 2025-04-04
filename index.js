@@ -11,6 +11,8 @@
 // For more info see docs.battlesnake.com
 
 import runServer from './server.js';
+import { preventOutOfBounds } from './preventOutOfBounds.js';
+
 
 // info is called when you create your Battlesnake on play.battlesnake.com
 // and controls your Battlesnake's appearance
@@ -65,10 +67,8 @@ function move(gameState) {
   } else if (myNeck.y > myHead.y) { // Neck is above head, don't move up
     isMoveSafe.up = false;
   }
-
-  // TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
-  // boardWidth = gameState.board.width;
-  // boardHeight = gameState.board.height;
+  
+  isMoveSafe = preventOutOfBounds(myHead, gameState, isMoveSafe);
 
   // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
   // myBody = gameState.you.body;
