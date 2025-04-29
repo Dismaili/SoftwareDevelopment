@@ -11,6 +11,7 @@
 // For more info see docs.battlesnake.com
 
 import runServer from './server.js';
+import { avoidHeadToHeadMoves } from './headToHead.js';
 
 // info is called when you create your Battlesnake on play.battlesnake.com
 // and controls your Battlesnake's appearance
@@ -66,15 +67,10 @@ function move(gameState) {
     isMoveSafe.up = false;
   }
 
-  // TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
-  // boardWidth = gameState.board.width;
-  // boardHeight = gameState.board.height;
+  isMoveSafe = avoidHeadToHeadMoves(gameState, isMoveSafe);
 
   // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
   // myBody = gameState.you.body;
-
-  // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
-  // opponents = gameState.board.snakes;
 
   // Are there any safe moves left?
   const safeMoves = Object.keys(isMoveSafe).filter(key => isMoveSafe[key]);
@@ -86,8 +82,6 @@ function move(gameState) {
   // Choose a random move from the safe moves
   const nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
 
-  // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
-  // food = gameState.board.food;
 
   console.log(`MOVE ${gameState.turn}: ${nextMove}`)
   return { move: nextMove };
