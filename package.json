@@ -18,9 +18,12 @@
   "dependencies": {
     "express": "^4.20.0",
     "starter-snake-javascript": "file:"
+ release/v1.0.0
   },
   "devDependencies": {
     "prettier": "^3.5.3"
+
+ main
   }
 }
 
