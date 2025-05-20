@@ -5,6 +5,9 @@ export default function runServer(handlers) {
   app.use(express.json());
   const express = require('express');
   const { notifyTeam } = require('./db/connection');
+  const direction = floodFill(board, you);
+  res.json({ move: direction });
+
 
   // === Health check endpoint ===
   app.get('/health', (req, res) => {
