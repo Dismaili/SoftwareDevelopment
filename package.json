@@ -1,10 +1,10 @@
 {
   "name": "starter-snake-javascript",
   "version": "1.0.0",
+  "type": "module",
   "author": "BattlesnakeOfficial",
   "description": "An official Battlesnake template written in JavaScript. Get started at play.battlesnake.com.",
   "license": "MIT",
-  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -16,18 +16,11 @@
     "url": "git+https://github.com/BattlesnakeOfficial/starter-snake-javascript.git"
   },
   "dependencies": {
-    "express": "^4.20.0",
-    "starter-snake-javascript": "file:"
- release/v1.0.0
+    "express": "^4.21.2"
   },
   "devDependencies": {
- text/unit-tests
     "jest": "^29.7.0",
     "prettier": "^3.5.3",
     "supertest": "^7.1.1"
-    "prettier": "^3.5.3"
-
- main
- main
   }
 }
