@@ -5,6 +5,30 @@ import checkSnakeCollision from "./checkSnakeCollision.js";
 import { getMoveTowardsFood } from "./foodTargeting.js";
 import { avoidHeadToHeadMoves } from "./headToHead.js";
 
+
+
+const express = require('express');
+const path = require('path');
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+
+app.post('/api/snake/settings', (req, res) => {
+  const { name, color } = req.body;
+  console.log('Updated Snake Settings:', name, color);
+  // Optionally store these in memory or file for game usage
+  res.sendStatus(200);
+});
+
+app.listen(port, () => {
+  console.log(`Battlesnake + UI server running at http://localhost:${port}`);
+});
+
+
+// info is called when your Battlesnake is created
+
 function info() {
   return {
     apiversion: "1",
