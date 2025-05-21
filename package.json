@@ -18,12 +18,26 @@
   "dependencies": {
     "express": "^4.20.0",
     "starter-snake-javascript": "file:"
+ feature/drin-tests
  release/v1.0.0
+
+
+
+ develop
   },
   "devDependencies": {
     "prettier": "^3.5.3"
 
+ feature/drin-tests
  main
+
+
+
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3"
+
+ develop
   }
 }
 
