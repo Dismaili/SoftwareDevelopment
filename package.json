@@ -8,7 +8,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+
     "test": "jest --config jest.config.js",
+
     "format": "prettier --write ."
   },
   "repository": {
@@ -16,6 +20,14 @@
     "url": "git+https://github.com/BattlesnakeOfficial/starter-snake-javascript.git"
   },
   "dependencies": {
+
+    "express": "^4.20.0"
+  },
+  "devDependencies": {
+  "jest": "^29.0.0",
+  "supertest": "^6.3.0",
+  "prettier": "^3.5.3"
+
 
     "express": "^4.21.2"
   },
@@ -53,5 +65,7 @@
     "prettier": "^3.5.3"
 
 
+
   }
 
+}
