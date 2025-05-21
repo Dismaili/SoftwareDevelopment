@@ -18,10 +18,16 @@
   "dependencies": {
     "express": "^4.20.0",
     "starter-snake-javascript": "file:"
+ release/v1.0.0
   },
   "devDependencies": {
+ text/unit-tests
     "jest": "^29.7.0",
     "prettier": "^3.5.3",
     "supertest": "^7.1.1"
+    "prettier": "^3.5.3"
+
+ main
+ main
   }
 }
