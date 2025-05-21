@@ -1,4 +1,5 @@
-## [1.1.0] – 2025-05-21
+
+## [1.2.0] – 2025-05-21
 
 ### Frontend (Rrona)
 - Built new responsive UI components (layout, cards, forms, buttons) using Tailwind CSS.
@@ -38,4 +39,3 @@
 - Helped prep content for final sprint review/demo.
 
 ---
-
