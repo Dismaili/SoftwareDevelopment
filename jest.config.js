@@ -1,3 +1,4 @@
+
 // jest.config.js
 export default {
     testEnvironment: 'node',
@@ -5,3 +6,8 @@ export default {
     moduleNameMapper: {}
   };
   
+
+export default {
+  testEnvironment: 'node',
+  transform: {}
+};

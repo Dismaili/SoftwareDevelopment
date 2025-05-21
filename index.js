@@ -1,3 +1,4 @@
+
 // Welcome to
 // __________         __    __  .__                               __
 // \______   \_____ _/  |__/  |_|  |   ____   ______ ____ _____  |  | __ ____
@@ -14,10 +15,33 @@ import checkSnakeCollision from "./checkSnakeCollision.js";
 import { getMoveTowardsFood } from "./foodTargeting.js";
 import { avoidHeadToHeadMoves } from "./headToHead.js";
 
+const express = require('express');
+const path = require('path');
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+
+app.post('/api/snake/settings', (req, res) => {
+  const { name, color } = req.body;
+  console.log('Updated Snake Settings:', name, color);
+  // Optionally store these in memory or file for game usage
+  res.sendStatus(200);
+});
+
+app.listen(port, () => {
+  console.log(`Battlesnake + UI server running at http://localhost:${port}`);
+});
+
+
 // info is called when your Battlesnake is created
+
 function info() {
   console.log("INFO");
 
+
+function info() {
   return {
     apiversion: "1",
     author: "ichindris, dismaili1, rrama5, jkotori123, mmatevski, aganiu",
@@ -27,17 +51,22 @@ function info() {
   };
 }
 
+
 // Called at the start of each game
+
 function start(gameState) {
   console.log("GAME START");
 }
 
+
 // Called at the end of each game
+
 function end(gameState) {
   console.log("GAME OVER\n");
 }
 
 // Called every turn — decides the move
+
 function move(gameState) {
   let isMoveSafe = {
     up: true,
@@ -48,6 +77,7 @@ function move(gameState) {
 
   const myHead = gameState.you.body[0];
   const myNeck = gameState.you.body[1];
+
 
   // Prevent moving backwards
   if (myNeck.x < myHead.x) {
@@ -69,10 +99,24 @@ function move(gameState) {
   // Filter to only safe moves
   const safeMoves = Object.keys(isMoveSafe).filter((key) => isMoveSafe[key]);
 
+  if (myNeck.x < myHead.x) isMoveSafe.left = false;
+  else if (myNeck.x > myHead.x) isMoveSafe.right = false;
+  else if (myNeck.y < myHead.y) isMoveSafe.down = false;
+  else if (myNeck.y > myHead.y) isMoveSafe.up = false;
+
+  isMoveSafe = preventOutOfBounds(myHead, gameState, isMoveSafe);
+  isMoveSafe = checkSelfCollision(gameState, myHead, isMoveSafe);
+  isMoveSafe = checkSnakeCollision(gameState, myHead, isMoveSafe);
+  isMoveSafe = avoidHeadToHeadMoves(gameState, isMoveSafe);
+
+  const safeMoves = Object.keys(isMoveSafe).filter((key) => isMoveSafe[key]);
+
+
   if (safeMoves.length === 0) {
     console.log(`MOVE ${gameState.turn}: No safe moves! Moving down.`);
     return { move: "down" };
   }
+
 
   // Try moving toward food
   let nextMove = getMoveTowardsFood(gameState, safeMoves);
@@ -82,6 +126,11 @@ function move(gameState) {
   } else {
     nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
     console.log(`MOVE ${gameState.turn}: Random safe move -> ${nextMove}`);
+
+  let nextMove = getMoveTowardsFood(gameState, safeMoves);
+  if (!nextMove) {
+    nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
+
   }
 
   return { move: nextMove };
@@ -94,3 +143,6 @@ runServer({
   move: move,
   end: end,
 });
+
+// ✅ Start server
+runServer({ info, start, move, end });
