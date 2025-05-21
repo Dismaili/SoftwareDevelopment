@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --config jest.config.js",
     "format": "prettier --write ."
   },
   "repository": {
@@ -21,9 +21,13 @@
  release/v1.0.0
   },
   "devDependencies": {
+ text/unit-tests
+    "jest": "^29.7.0",
+    "prettier": "^3.5.3",
+    "supertest": "^7.1.1"
     "prettier": "^3.5.3"
 
  main
+ main
   }
 }
-
